@@ -9,7 +9,9 @@ async function create(req: Request, res: Response){
 }
 
 async function getAllBooks(req: Request, res: Response){
-    const { name } = req.query;
+    let name = "";
+    if (req.query.name)
+        name = req.query.name.toString();
     const books = await booksService.getAllBooks(name);
     res.send(books);
 }
